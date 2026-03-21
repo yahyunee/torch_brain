@@ -448,6 +448,7 @@ class DataModuleForDiver(DataModule):
         model.unit_emb.initialize_vocab(self.get_unit_ids())
         model.session_emb.initialize_vocab(self.get_session_ids())
     
+    '''
     # ==================== Legacy tokenizer (kept for reference) ====================
     def _create_tokenizer_legacy_outdated(self): 
         """[LEGACY] Standalone tokenizer that produces POYO-style batch format.
@@ -566,7 +567,8 @@ class DataModuleForDiver(DataModule):
     
     # Note: get_session_ids, get_unit_ids, get_recording_config_dict 
     # are inherited from DataModule (identical implementation)
-    
+    '''
+
     def get_multitask_readout_registry(self):
         """Return readout registry from task_config's multitask_readout.
         

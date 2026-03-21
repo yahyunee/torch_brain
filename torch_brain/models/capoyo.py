@@ -495,14 +495,12 @@ class CaPOYO(nn.Module):
 
     
     def _tokenize_eeg(self, data: Data) -> Dict:
-        """Transform temporaldata.Data to POYO-style dict format.
-            
-            Produces:
-                dict_keys(['model_inputs', 'target_values', 'target_weights', 'session_id', 'absolute_start', 'eval_mask', 'data_info'])
-                data_info: dict_keys(['modality', 'ch_type', 'xyz_id']) => for DIVER!
+        """
+        ...
         """
         import numpy as np
         from torch_brain.data import pad8, track_mask8, chain
+        from torch_brain.data import pad2d, DIVERDataInfoObject  #* danny added
         from torch_brain.utils import create_linspace_latent_tokens
             
         start, end = 0, self.sequence_length
@@ -554,31 +552,19 @@ class CaPOYO(nn.Module):
         #####
 
         output_session_index = np.repeat(session_index, len(output_timestamps))
-        
-        # === Extract data_info for DIVER (xyz_id, modality, etc.) ===
-        data_info = {
-            'modality': 'EEG',
-            'ch_type': 'EEG',
-        }
-        # Get xyz_id from data.units if available (from LMDB)
-        if hasattr(data, 'units'):
-            if hasattr(data.units, 'xyz_id'):
-                data_info['xyz_id'] = np.array(data.units.xyz_id, dtype=np.float32)
-            elif hasattr(data.units, 'imaging_plane_xy'):
-                # Extend 2D to 3D with zeros for z
-                xy = np.array(data.units.imaging_plane_xy, dtype=np.float32)
-                xyz = np.zeros((xy.shape[0], 3), dtype=np.float32)
-                xyz[:, :2] = xy
-                data_info['xyz_id'] = xyz
-            else:
-                # Default: NaN coordinates (will use dummy positional encoding)
-                data_info['xyz_id'] = np.full((N, 3), np.nan, dtype=np.float32)
-        else:
-            data_info['xyz_id'] = np.full((N, 3), np.nan, dtype=np.float32)
+        import pdb ; pdb.set_trace()
+        #TODO : SHAPE IS (500,32).. WHICH IS FINE B/C IT'S (500*N, 32) AND N IS ACCIDENTLY 1
+        #TODO : however, such code to revert it back should be made...
+        #TODO : maybe already made in ft_diver.py?
         
         # === Build the POYO-style dict ===
         data_dict = {
             "model_inputs": {
+                #* danny addeds
+                "x" : pad2d(eeg_data), # N*P, C -> B, N*P, C ==> 64, 500, 32 
+                #* B, N*P, C => => (model의 token_size... )
+                "data_info_list" : DIVERDataInfoObject(data.data_info_list),
+                
                 # Input sequence (keys/values for encoder)
                 "input_unit_index": pad8(input_unit_index),
                 "input_timestamps": pad8(input_timestamps),
@@ -599,11 +585,84 @@ class CaPOYO(nn.Module):
             "session_id": data.session.id,
             "absolute_start": getattr(data, 'absolute_start', 0.0),
             "eval_mask": chain({'label': np.array([True] * len(label))}, allow_missing_keys=True),
-            # Data info for DIVER embedding (xyz_id required by STCPE). #! ONLY FOR DIVER
-            "data_info": data_info,
         }
         
         return data_dict
+        
+
+    '''
+    def _tokenize_eeg_outdated(self, data: Data) -> Dict:
+        """EEG tokenization that returns raw format for DIVER processing."""
+        ### Extract EEG data
+        eeg_data = data.eeg.values 
+        x = eeg_data.T  
+
+        C, L = x.shape
+        patch_size = self.eeg_config["patch_size"]
+
+        N = L // patch_size  # num_patches
+
+        ### Create input timestamps and latents using helpers
+        input_timestamps = self._create_input_timestamps_eeg(C, N)
+        latent_index, latent_timestamps = self._create_latent_tokens()
+
+        ### Prepare input_values and input_unit_index for POYO compatibility
+        # Flatten (C, L) -> (C*L, 1) for input_values
+        input_values = rearrange(x, 'c l -> (c l) 1')  # (C*L, 1)
+
+        # Create input_unit_index: channel IDs repeated L times each
+        # [0,0,..,0 (L times), 1,1,..,1 (L times), , C-1,C-1,..C-1]
+        input_unit_index = np.repeat(np.arange(C, dtype=np.int64), L)  # (C*L,)
+
+        # Create per-sample timestamps for input_values
+        # Each sample gets timestamp based on its position in the sequence
+        sample_rate = L / self.sequence_length  # samples per second
+        sample_timestamps = np.arange(L, dtype=np.float32) / sample_rate  # (L,)
+        input_timestamps_full = np.tile(sample_timestamps, C)  # (C*L,) - repeat for each channel
+
+        ### prepare outputs
+        session_index = self.session_emb.tokenizer(data.session.id)
+
+        # Extract label/target information
+        if hasattr(data, 'drifting_gratings') and hasattr(data.drifting_gratings, 'orientation_id'):
+            label = data.drifting_gratings.orientation_id
+            label_timestamps = data.drifting_gratings.timestamps
+        else:
+            # Fallback: single label at sequence center
+            label = np.array([0])
+            label_timestamps = np.array([self.sequence_length / 2])
+
+        # Build output info (simplified for EEG)
+        # This assumes a single classification task
+        output_timestamps = label_timestamps
+        output_task_index = np.zeros(len(label_timestamps), dtype=np.int64)
+        session_index = np.repeat(session_index, len(output_timestamps))
+
+        data_dict = {
+            # Raw EEG for DIVER encoder
+            "x": x,  # (C, L) - used by DIVERCaPOYOFineTuneModel
+            "model_inputs": {
+                # Input sequence - POYO-compatible format
+                "input_values": pad8(input_values),  # (C*L, 1)
+                "input_unit_index": pad8(input_unit_index),  # (C*L,)
+                "input_timestamps": pad8(input_timestamps_full),  # (C*L,) - per-sample timestamps
+                "input_mask": track_mask8(input_unit_index),  # (C*L,)
+                # Latent sequence
+                "latent_index": latent_index,
+                "latent_timestamps": latent_timestamps,
+                # Output sequence
+                "output_session_index": pad8(session_index),
+                "output_timestamps": pad8(output_timestamps),
+                "output_decoder_index": pad8(output_task_index),
+            },
+            # Ground truth targets
+            "target_values": {"label": label},  # Simple dict for single task
+            "session_id": data.session.id,
+        }
+
+        return data_dict
+    '''
+
 
     def _validate_params(self, sequence_length, latent_step):
         r"""Ensure: sequence_length, and latent_step are floating point numbers greater
