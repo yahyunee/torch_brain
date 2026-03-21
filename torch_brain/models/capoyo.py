@@ -487,14 +487,12 @@ class CaPOYO(nn.Module):
 
     
     def _tokenize_eeg(self, data: Data) -> Dict:
-        """Transform temporaldata.Data to POYO-style dict format.
-            
-            Produces:
-                dict_keys(['model_inputs', 'target_values', 'target_weights', 'session_id', 'absolute_start', 'eval_mask', 'data_info'])
-                data_info: dict_keys(['modality', 'ch_type', 'xyz_id']) => for DIVER!
+        """
+        ...
         """
         import numpy as np
         from torch_brain.data import pad8, track_mask8, chain
+        from torch_brain.data import pad2d, DIVERDataInfoObject  #* danny added
         from torch_brain.utils import create_linspace_latent_tokens
             
         start, end = 0, self.sequence_length
@@ -541,31 +539,19 @@ class CaPOYO(nn.Module):
         output_decoder_index = np.zeros_like(label)  # Single decoder
         
         output_session_index = np.repeat(session_index, len(output_timestamps))
-        
-        # === Extract data_info for DIVER (xyz_id, modality, etc.) ===
-        data_info = {
-            'modality': 'EEG',
-            'ch_type': 'EEG',
-        }
-        # Get xyz_id from data.units if available (from LMDB)
-        if hasattr(data, 'units'):
-            if hasattr(data.units, 'xyz_id'):
-                data_info['xyz_id'] = np.array(data.units.xyz_id, dtype=np.float32)
-            elif hasattr(data.units, 'imaging_plane_xy'):
-                # Extend 2D to 3D with zeros for z
-                xy = np.array(data.units.imaging_plane_xy, dtype=np.float32)
-                xyz = np.zeros((xy.shape[0], 3), dtype=np.float32)
-                xyz[:, :2] = xy
-                data_info['xyz_id'] = xyz
-            else:
-                # Default: NaN coordinates (will use dummy positional encoding)
-                data_info['xyz_id'] = np.full((N, 3), np.nan, dtype=np.float32)
-        else:
-            data_info['xyz_id'] = np.full((N, 3), np.nan, dtype=np.float32)
+        import pdb ; pdb.set_trace()
+        #TODO : SHAPE IS (500,32).. WHICH IS FINE B/C IT'S (500*N, 32) AND N IS ACCIDENTLY 1
+        #TODO : however, such code to revert it back should be made...
+        #TODO : maybe already made in ft_diver.py?
         
         # === Build the POYO-style dict ===
         data_dict = {
             "model_inputs": {
+                #* danny addeds
+                "x" : pad2d(eeg_data), # N*P, C -> B, N*P, C ==> 64, 500, 32 
+                #* B, N*P, C => => (model의 token_size... )
+                "data_info_list" : DIVERDataInfoObject(data.data_info_list),
+                
                 # Input sequence (keys/values for encoder)
                 "input_unit_index": pad8(input_unit_index),
                 "input_timestamps": pad8(input_timestamps),
@@ -586,14 +572,12 @@ class CaPOYO(nn.Module):
             "session_id": data.session.id,
             "absolute_start": getattr(data, 'absolute_start', 0.0),
             "eval_mask": chain({'label': np.array([True] * len(label))}, allow_missing_keys=True),
-            # Data info for DIVER embedding (xyz_id required by STCPE). #! ONLY FOR DIVER
-            "data_info": data_info,
         }
         
         return data_dict
         
 
-
+    '''
     def _tokenize_eeg_outdated(self, data: Data) -> Dict:
         """EEG tokenization that returns raw format for DIVER processing."""
         ### Extract EEG data
@@ -664,6 +648,7 @@ class CaPOYO(nn.Module):
         }
 
         return data_dict
+    '''
 
 
     def _validate_params(self, sequence_length, latent_step):

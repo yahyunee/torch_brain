@@ -272,6 +272,20 @@ collate_fn_map[ChainObject] = chain_collate_object_fn
 collate_fn_map[ChainBatchTrackerObject] = chain_batch_tracker_collate_tensor_fn
 collate_fn_map[Padded2dObject] = pad2d_collate_object_fn
 
+# new, data_info object
+DIVERDataInfoObject = namedtuple("DIVERDataInfoObject", ["obj"])
+
+def listize_to_data_info_list_from_data_info(obj: Dict):
+    r"""Wrap this object to specify that it is a data_info (DIVER) s.t. you just need it to be saved as a lit (i.e. into data_info_list) 
+    without any padding or anything
+    
+    Args:
+        obj: Must be dict    
+    """
+    return DIVERDataInfoObject(obj)
+
+collate_fn_map[DIVERDataInfoObject] = chain_collate_str_fn #*can use the same as str since it's just a no-op 
+
 
 def collate(batch):
     r"""Extension of PyTorch's :obj:`default_collate` function to enable more advanced

@@ -8,6 +8,7 @@ from .collate import (
     track_batch,
     track_mask,
     track_mask8,
+    DIVERDataInfoObject,
 )
 from .dataset import Dataset
 from .dataset_from_lmdb import DatasetFromLmdb, LmdbConfig

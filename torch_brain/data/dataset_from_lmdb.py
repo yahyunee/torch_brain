@@ -347,14 +347,29 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
         # Load and concatenate overlapping samples
         all_data = []
         all_labels = []
+        all_data_infos = [] #* added by Danny on Mar 18th. Ideally there shouldn't be any for loop at all, but just following the current structure
         label_timestamps = []
         
+        
+        """#! remove later... 
+        FOR TRACKING SHAPES
+        * (loading from LMDB) : sample['sample'] shape : (32, 10, 500) (C, N, P)
+        * (sample_data) : after _sample_to_continuous_array : (5000, 32) (T, C) (correct so far..?)
+        #* overlpap_end is wrong (should be 10s, but 1s so far)
+        #* becuase get's start and end are wrong (above)
+        (Pdb) start
+        46057.030389130116
+        (Pdb) end
+        46058.030389130116
+        (Pdb) overlapping_samples
+        [(4605, 46057.030389130116, 46058.030389130116)]
+        """
         for sample_idx, overlap_start, overlap_end in overlapping_samples:
             key = self._current_keys[sample_idx]
             sample = self._get_sample_by_key(key)
             
-            sample_data = self._sample_to_continuous_array(sample['sample'])
-            sample_start = self._sample_start_times[sample_idx]
+            sample_data = self._sample_to_continuous_array(sample['sample']) 
+            sample_start = self._sample_start_times[sample_idx] 
             sample_end = self._sample_end_times[sample_idx]
             
             # Calculate slice indices within the sample
@@ -382,6 +397,8 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
             all_labels.append(sample['label'])
             # Use overlap_start/overlap_end to ensure timestamp is within [start, end]
             label_timestamps.append((overlap_start + overlap_end) / 2)
+            
+            all_data_infos.append(sample['data_info']) #* added by Danny on Mar 18th. Ideally there shouldn't be any for loop at all, but just following the current structure
         
         # Concatenate all data
         continuous_data = np.concatenate(all_data, axis=0).astype(np.float32)
@@ -425,6 +442,13 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
                 end=np.array([end - start])
             )
         )
+        
+        # Adding data_info stuff (addition by danny on mar 13 2026
+        assert len(overlapping_samples) == 1 and len(all_data_infos) == 1, "currently only support one sample per window, \
+            which SHOULD be what we get if we expect to use DIVER's finetuning datasets" 
+        data.data_info_list = all_data_infos[0] #* this is OK since we assume overlapping_samples is only 1. (assertion above) if above wasn't met, would be problematic, but not scope of DIVER POYO 
+        #* although it's not a "list" yet, to keep the "data_info_list" name during collate and eventually the batch
+        #* we name it like this (confusion I know haha)
         
         # BACKWARD COMPAT (AD-HOC): Also keep calcium_traces for POYO tokenizers
         # WARNING: This copies EEG data as calcium df_over_f - semantically incorrect
