@@ -364,7 +364,6 @@ class DataModuleForDiver(DataModule):
                 - brainset_id: identifier for the brainset
                 - session_id: identifier for the session
                 - sampling_rate: sampling rate in Hz
-                - sequence_length: length of each sequence in seconds
                 - num_targets: number of output classes
                 - multitask_readout: list of readout configurations
                 
@@ -389,7 +388,6 @@ class DataModuleForDiver(DataModule):
         
         # Store parameters from task_config (with fallbacks from params or defaults)
         # Note: self.sequence_length will be set in setup_dataset_and_link_model from model
-        self._default_sequence_length = self.task_config.get('sequence_length', getattr(params, 'sequence_length', 1.0))
         self.batch_size = getattr(params, 'batch_size', 32)
         self.num_workers = 0  # TODO for debug, CHANGE LATER: getattr(params, 'num_workers', 0)
         self.seed = getattr(params, 'seed', 42)
@@ -415,16 +413,16 @@ class DataModuleForDiver(DataModule):
         Args:
             model: Model with tokenize method
         """
-        # Get sequence_length from model (like DataModule does)
-        self.sequence_length = getattr(model, 'sequence_length', self._default_sequence_length)
-        
+        # Get sequence_length from argparser (params) — model.sequence_length should match
+        self.sequence_length = getattr(self.params, 'sequence_length', 1.0)
+
         from torch_brain.data import DatasetFromLmdb
         
         # Create datasets for each split using model.tokenize (same pattern as DataModule)
         self.train_dataset = DatasetFromLmdb(
             lmdb_config=self._lmdb_cfg,
             split='train',
-            transform=model.tokenize, #TODO : for now, it's just model.tokenize. should there be transform for DIVER be incorporated?
+            transform=model.tokenize, #TODO : for now, it's just model.tokenize. should there be transform for DIVER be incorporated? Danny said no transform in DIVER code.
         )
         
         self.val_dataset = DatasetFromLmdb(
