@@ -45,8 +45,8 @@ class LmdbConfig:
     brainset_id: str = "lmdb_dataset"
     session_id: str = "session_001" #TODO : what should be session in our case?
     sampling_rate: float = 500.0
-    patch_duration: Optional[float] = None  # Auto-computed if None
-    sample_duration: Optional[float] = None  # Auto-computed if None
+    patch_duration: Optional[float] = None  # P, Auto-computed if None
+    sample_duration: Optional[float] = None  # N, Auto-computed if None
     channel_key: str = "channel_names"
     xyz_key: str = "xyz_id"
     multitask_readout: List[Dict] = field(default_factory=list) #TODO : Should be handled via FINAL_TASK_DICT
@@ -99,7 +99,6 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
         subject_id_prefix_fn: Optional[Callable[[Data], str]] = None,
     ):
         super().__init__()
-        import pdb; pdb.set_trace()
         # Convert dict to LmdbConfig if needed
         if isinstance(lmdb_config, dict):
             lmdb_config = LmdbConfig(**lmdb_config)
@@ -275,135 +274,50 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
             if data is None:
                 raise KeyError(f"Sample key '{key}' not found in LMDB")
             return pickle.loads(data)
-    
-    def _find_samples_in_range(self, start: float, end: float) -> List[Tuple[int, float, float]]:
-        """Find all samples that overlap with the given time range.
         
-        Returns:
-            List of (sample_index, overlap_start, overlap_end) tuples
-        """
-        overlapping = []
-        
-        # Use binary search to find starting point
-        start_idx = bisect.bisect_right(self._sample_end_times, start)
-        
-        for i in range(start_idx, len(self._current_keys)):
-            sample_start = self._sample_start_times[i]
-            sample_end = self._sample_end_times[i]
-            
-            # Check if sample overlaps with query range
-            if sample_start >= end:
-                break
-            
-            if sample_end > start:
-                overlap_start = max(start, sample_start)
-                overlap_end = min(end, sample_end)
-                overlapping.append((i, overlap_start, overlap_end))
-        
-        return overlapping
-    
     def _sample_to_continuous_array(self, sample_data: np.ndarray) -> np.ndarray:
         """Convert sample data to continuous time series format.
-        
+
         Input: (channels, patches, samples_per_patch) or (channels, time)
         Output: (time, channels)
         """
         if sample_data.ndim == 3:
             # (channels, patches, samples_per_patch) -> (time, channels)
             n_channels, n_patches, samples_per_patch = sample_data.shape
-            # Transpose to (patches, samples_per_patch, channels) then reshape
             return sample_data.transpose(1, 2, 0).reshape(-1, n_channels)
         else:
             # (channels, time) -> (time, channels)
             return sample_data.T
-    
+
     def get(self, recording_id: str, start: float, end: float) -> Data:
-        """Extract a slice of data from the virtual continuous recording.
-        
+        """Load one whole LMDB sample corresponding to the requested time range.
+
+        Since DIVER LMDB samples are pre-cut (e.g. 10s each) and sequence_length
+        equals sample_duration, each (start, end) window maps to exactly one sample.
+        No partial slicing is needed.
+
         Args:
             recording_id: The recording ID (should match self.recording_id)
-            start: Start time in seconds
+            start: Start time in seconds (used to locate the sample index)
             end: End time in seconds
-            
+
         Returns:
-            A temporaldata.Data object containing the requested slice
+            A temporaldata.Data object containing the full LMDB sample
         """
         if recording_id != self.recording_id:
             raise ValueError(f"Unknown recording_id: {recording_id}. Expected: {self.recording_id}")
-        
-        # Clamp to valid range
-        start = max(0, start)
-        end = min(end, self._total_duration)
-        
-        if start >= end:
-            raise ValueError(f"Invalid time range: [{start}, {end}]")
-        
-        # Find overlapping samples
-        overlapping_samples = self._find_samples_in_range(start, end)
-        
-        if not overlapping_samples:
-            raise ValueError(f"No data found in time range [{start}, {end}]")
-        
-        # Load and concatenate overlapping samples
-        all_data = []
-        all_labels = []
-        all_data_infos = [] #* added by Danny on Mar 18th. Ideally there shouldn't be any for loop at all, but just following the current structure
-        label_timestamps = []
-        
-        
-        """#! remove later... 
-        FOR TRACKING SHAPES
-        * (loading from LMDB) : sample['sample'] shape : (32, 10, 500) (C, N, P)
-        * (sample_data) : after _sample_to_continuous_array : (5000, 32) (T, C) (correct so far..?)
-        #* overlpap_end is wrong (should be 10s, but 1s so far)
-        #* becuase get's start and end are wrong (above)
-        (Pdb) start
-        46057.030389130116
-        (Pdb) end
-        46058.030389130116
-        (Pdb) overlapping_samples
-        [(4605, 46057.030389130116, 46058.030389130116)]
-        """
-        for sample_idx, overlap_start, overlap_end in overlapping_samples:
-            key = self._current_keys[sample_idx]
-            sample = self._get_sample_by_key(key)
-            
-            sample_data = self._sample_to_continuous_array(sample['sample']) 
-            sample_start = self._sample_start_times[sample_idx] 
-            sample_end = self._sample_end_times[sample_idx]
-            
-            # Calculate slice indices within the sample
-            sample_rate = self.config.sampling_rate
-            n_timepoints = sample_data.shape[0]
-            
-            # Convert overlap times to indices within sample
-            start_offset = overlap_start - sample_start
-            end_offset = overlap_end - sample_start
-            
-            start_idx = int(start_offset * sample_rate)
-            end_idx = int(end_offset * sample_rate)
-            
-            # Clamp indices
-            start_idx = max(0, min(start_idx, n_timepoints))
-            end_idx = max(0, min(end_idx, n_timepoints))
-            
-            if end_idx > start_idx:
-                all_data.append(sample_data[start_idx:end_idx])
-            
-            # Store label with timestamp at OVERLAP center (not sample center)
-            # This ensures the label falls within the requested time range
-            # For DIVER pipeline, label MUST exist in LMDB
-            assert 'label' in sample, f"LMDB sample '{key}' missing 'label' key. DIVER pipeline requires labels."
-            all_labels.append(sample['label'])
-            # Use overlap_start/overlap_end to ensure timestamp is within [start, end]
-            label_timestamps.append((overlap_start + overlap_end) / 2)
-            
-            all_data_infos.append(sample['data_info']) #* added by Danny on Mar 18th. Ideally there shouldn't be any for loop at all, but just following the current structure
-        
-        # Concatenate all data
-        continuous_data = np.concatenate(all_data, axis=0).astype(np.float32)
-        n_timepoints = continuous_data.shape[0]
-        
+
+        # Map start time to sample index (each sample is sample_duration seconds)
+        sample_idx = int(start / self.config.sample_duration)
+        sample_idx = min(sample_idx, len(self._current_keys) - 1)
+
+        # Load the whole sample from LMDB
+        key = self._current_keys[sample_idx]
+        sample = self._get_sample_by_key(key)
+
+        assert 'label' in sample, f"LMDB sample '{key}' missing 'label' key. DIVER pipeline requires labels."
+        sample_duration = self.config.sample_duration
+
         # Build the Data object
         data = Data(
             _absolute_start=start,
@@ -412,10 +326,10 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
             subject=Data(id=self._subject_id),
             domain=Interval(
                 start=np.array([0.0]),
-                end=np.array([end - start])
+                end=np.array([sample_duration])
             ),
         )
-        
+
         # Add units (channels)
         if self._channel_names:
             units_data = {
@@ -423,102 +337,47 @@ LmdbConfig(lmdb_path='/global/cfs/cdirs/m4750/DIVER/PRETRAINING_DATA_LMDB/arch_s
             }
             if self._xyz_coords is not None:
                 xyz_array = np.array(self._xyz_coords).astype(np.float32)
-                # Store full xyz_id (3D coordinates) for DIVER STCPE
                 units_data['xyz_id'] = xyz_array
-                # Also store imaging_plane_xy (2D) for backward compatibility
                 if xyz_array.shape[1] >= 2:
                     units_data['imaging_plane_xy'] = xyz_array[:, :2]
             data.units = ArrayDict(**units_data)
-        
-        # Add time series data as RegularTimeSeries
-        # For EEG data: use data.eeg with values
-        # continuous_data shape: (T, N_channels)
-        # Note: RegularTimeSeries computes timestamps automatically from sampling_rate and domain
+
+        # Store EEG in original DIVER shape (C, N, P) — no transpose needed
+        # since we don't use RegularTimeSeries slicing and tokenizer expects (C, N, P)
         data.eeg = RegularTimeSeries(
-            values=continuous_data,
+            values=sample['sample'].astype(np.float32),  # (C, N, P) as-is
             sampling_rate=self.config.sampling_rate,
             domain=Interval(
                 start=np.array([0.0]),
-                end=np.array([end - start])
-            )
+                end=np.array([sample_duration])
+            ),
         )
-        
-        # Adding data_info stuff (addition by danny on mar 13 2026
-        assert len(overlapping_samples) == 1 and len(all_data_infos) == 1, "currently only support one sample per window, \
-            which SHOULD be what we get if we expect to use DIVER's finetuning datasets" 
-        data.data_info_list = all_data_infos[0] #* this is OK since we assume overlapping_samples is only 1. (assertion above) if above wasn't met, would be problematic, but not scope of DIVER POYO 
-        #* although it's not a "list" yet, to keep the "data_info_list" name during collate and eventually the batch
-        #* we name it like this (confusion I know haha)
-        
-        # BACKWARD COMPAT (AD-HOC): Also keep calcium_traces for POYO tokenizers
-        # WARNING: This copies EEG data as calcium df_over_f - semantically incorrect
-        # TODO: Remove once tokenizers use data.eeg directly
-        if not hasattr(self, '_warned_calcium_traces'):
-            logger.warning("AD-HOC: Storing EEG data in data.calcium_traces.df_over_f for "
-                          "backward compatibility with POYO tokenizers. This is semantically "
-                          "incorrect and should be removed once tokenizers use data.eeg.")
-            self._warned_calcium_traces = True
-        data.calcium_traces = RegularTimeSeries(
-            df_over_f=continuous_data,
-            sampling_rate=self.config.sampling_rate,
-            domain=Interval(
-                start=np.array([0.0]),
-                end=np.array([end - start])
-            )
-        )
-        
-        # Add task labels (required for DIVER pipeline)
-        # Uses generic 'target' instead of task-specific names like 'drifting_gratings'
-        assert all_labels, "No labels found in the requested time range. DIVER pipeline requires labels."
-        
-        label_timestamps = np.array(label_timestamps) - start  # Relative to slice start
-        # Filter labels within the slice
-        mask = (label_timestamps >= 0) & (label_timestamps < (end - start))
-        
-        assert np.any(mask), f"No labels within time range [{start}, {end}]. Check your sampling intervals."
-        
-        filtered_timestamps = label_timestamps[mask]
-        filtered_labels = np.array(all_labels)[mask]
-        
-        # Generic target structure for any classification/regression task
+
+        # data_info from LMDB sample
+        data.data_info_list = sample['data_info']
+
+
+        # Label: one label per sample, timestamp at the center
+        label = sample['label']
+        label_timestamp = np.array([sample_duration / 2])
+        label_array = np.array([label])
+
         data.target = IrregularTimeSeries(
-            timestamps=filtered_timestamps,
-            label=filtered_labels.astype(np.int64),  # Classification label
+            timestamps=label_timestamp,
+            label=label_array.astype(np.int64),
             domain=Interval(
                 start=np.array([0.0]),
-                end=np.array([end - start])
+                end=np.array([sample_duration])
             )
         )
-        
-        # BACKWARD COMPAT (AD-HOC): Keep drifting_gratings for POYO tokenizers
-        # WARNING: This maps generic labels to orientation_id/orientation fields
-        # temporal_frequency_* fields are FAKE (zeros/ones) - not real data!
-        # TODO: Remove once all tokenizers use data.target
-        if not hasattr(self, '_warned_drifting_gratings'):
-            logger.warning("AD-HOC: Storing labels in data.drifting_gratings for backward "
-                          "compatibility with POYO tokenizers. Fields 'orientation_id' and "
-                          "'orientation' contain the actual labels. Fields 'temporal_frequency_id' "
-                          "and 'temporal_frequency' are FAKE placeholder values (0/1). "
-                          "Tokenizers should use data.target.label instead.")
-            self._warned_drifting_gratings = True
-        data.drifting_gratings = IrregularTimeSeries(
-            timestamps=filtered_timestamps,
-            orientation_id=filtered_labels.astype(np.int64),
-            orientation=filtered_labels.astype(np.float32),
-            temporal_frequency_id=np.zeros_like(filtered_labels, dtype=np.int64),  # FAKE
-            temporal_frequency=np.ones_like(filtered_labels, dtype=np.float32),    # FAKE
-            domain=Interval(
-                start=np.array([0.0]),
-                end=np.array([end - start])
-            )
-        )
-        
+
+
         # Add config for downstream processing
         data.config = self.recording_dict[recording_id]["config"]
-        
+
         # Apply ID prefixes
         self._update_data_with_prefixed_ids(data)
-        
+
         return data
     
     def _update_data_with_prefixed_ids(self, data: Data):

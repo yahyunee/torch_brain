@@ -500,28 +500,26 @@ class CaPOYO(nn.Module):
         """
         import numpy as np
         from torch_brain.data import pad8, track_mask8, chain
-        from torch_brain.data import pad2d, DIVERDataInfoObject  #* danny added
+        from torch_brain.data import pad2d, pad3d, DIVERDataInfoObject  #* danny added
         from torch_brain.utils import create_linspace_latent_tokens
             
         start, end = 0, self.sequence_length
         
         # === Prepare input (EEG data as continuous signal) ===
-        # data.eeg has shape (time, channels) 
-        eeg_data = data.eeg.values  # (T, N_channels)
+        # data.eeg.values is already in DIVER shape (C, N, P)
+        eeg_data_in_diver_shape = data.eeg.values  # (C, N, P)
         timestamps = data.eeg.timestamps  # (T,)
         unit_ids = data.units.id  # channel IDs
+
+        C, N, P = eeg_data_in_diver_shape.shape
         
-        T, N = eeg_data.shape #! TODO : might be needed when converting back to POYO format.(for input mask!) should it be saved as self.~ ?
-        
-        # Flatten to (T*N,) for input - each timepoint x channel is a token
-        input_values = eeg_data.flatten().reshape(-1, 1)  # (T*N, 1)
-        
-        # Create timestamps for each (time, channel) pair
-        input_timestamps = np.repeat(timestamps, N)  # (T*N,)
-        
-        # Create unit indices - map local channel IDs to global vocab indices (like calcium tokenizer)
-        local_to_global_map = np.array(self.unit_emb.tokenizer(unit_ids))
-        input_unit_index = np.tile(local_to_global_map, T)  # (T*N,)
+        # Create C*N tokens following original POYO pattern:
+        #   original POYO: (T, N) grid -> timestamps repeated per neuron, unit_index repeated per timestep
+        #   EEG:           (C, N) grid -> timestamps repeated per channel, unit_index repeated per patch
+        input_timestamps = self._create_input_timestamps_eeg(C, N)  # (C*N,)
+
+        local_to_global_map = np.array(self.unit_emb.tokenizer(unit_ids))  # (C,)
+        input_unit_index = np.repeat(local_to_global_map, N)  # (C*N,)
         
         # === Prepare latents ===
         latent_index, latent_timestamps = self._create_latent_tokens()
@@ -552,23 +550,22 @@ class CaPOYO(nn.Module):
         #####
 
         output_session_index = np.repeat(session_index, len(output_timestamps))
-        import pdb ; pdb.set_trace()
+
         #TODO : SHAPE IS (500,32).. WHICH IS FINE B/C IT'S (500*N, 32) AND N IS ACCIDENTLY 1
         #TODO : however, such code to revert it back should be made...
         #TODO : maybe already made in ft_diver.py?
-        
         # === Build the POYO-style dict ===
         data_dict = {
             "model_inputs": {
                 #* danny addeds
-                "x" : pad2d(eeg_data), # N*P, C -> B, N*P, C ==> 64, 500, 32 
+                #"x" : pad2d(eeg_data), # N*P, C -> B, N*P, C ==> 64, 500, 32 
                 #* B, N*P, C => => (model의 token_size... )
                 "data_info_list" : DIVERDataInfoObject(data.data_info_list),
                 
                 # Input sequence (keys/values for encoder)
                 "input_unit_index": pad8(input_unit_index),
                 "input_timestamps": pad8(input_timestamps),
-                "input_values": pad8(input_values),
+                "input_values": pad3d(eeg_data_in_diver_shape),
                 "input_mask": track_mask8(input_unit_index),
                 # Latent sequence
                 "latent_index": latent_index,
@@ -586,7 +583,10 @@ class CaPOYO(nn.Module):
             "absolute_start": getattr(data, 'absolute_start', 0.0),
             "eval_mask": chain({'label': np.array([True] * len(label))}, allow_missing_keys=True),
         }
-        
+
+        #data_dict['model_inputs']['input_values'].obj.shape #(32, 10, 500)
+        #data_dict['model_inputs']['input_timestamps'].obj.shape #(320,)
+        #data_dict['model_inputs']['input_mask'].obj.shape #torch.Size([320])
         return data_dict
         
 

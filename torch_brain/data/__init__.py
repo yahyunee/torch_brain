@@ -4,6 +4,7 @@ from .collate import (
     collate,
     pad,
     pad2d,
+    pad3d,
     pad8,
     track_batch,
     track_mask,

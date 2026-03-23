@@ -284,7 +284,53 @@ def listize_to_data_info_list_from_data_info(obj: Dict):
     """
     return DIVERDataInfoObject(obj)
 
-collate_fn_map[DIVERDataInfoObject] = chain_collate_str_fn #*can use the same as str since it's just a no-op 
+collate_fn_map[DIVERDataInfoObject] = chain_collate_str_fn #*can use the same as str since it's just a no-op
+
+
+# pad3d — for DIVER-shaped (C, N, P) tensors
+Padded3dObject = namedtuple("Padded3dObject", ["obj"])
+
+
+def pad3d(obj):
+    r"""Wrap a (C, N, P) tensor so that it is zero-padded to (C_max, N_max, P)
+    across the batch.  Used for DIVER encoder inputs.
+
+    Args:
+        obj: A tensor or numpy array of shape (C, N, P).
+    """
+    return Padded3dObject(obj)
+
+
+def pad3d_collate_tensor_fn(
+    batch,
+    *,
+    collate_fn_map: Optional[Dict[Union[Type, Tuple[Type, ...]], Callable]] = None,
+):
+    if any(elem.ndim < 3 for elem in batch):
+        raise ValueError("pad3d: all tensors must have at least 3 dimensions.")
+    max_c = max(elem.shape[0] for elem in batch)
+    max_n = max(elem.shape[1] for elem in batch)
+
+    elem = batch[0]
+    b = torch.zeros((len(batch), max_c, max_n, *elem.shape[2:]), dtype=elem.dtype) #*elem.shape[2:] would be P but just following pad2d logic.
+    for i, elem in enumerate(batch): #P is not padded. considered same across the batch.
+        b[i, : elem.shape[0], : elem.shape[1]] = elem
+    return b
+
+
+pad3d_collate_fn_map = copy.deepcopy(default_collate_fn_map)
+pad3d_collate_fn_map[torch.Tensor] = pad3d_collate_tensor_fn
+
+
+def pad3d_collate_object_fn(
+    batch,
+    *,
+    collate_fn_map: Optional[Dict[Union[Type, Tuple[Type, ...]], Callable]] = None,
+):
+    return _collate([e.obj for e in batch], collate_fn_map=pad3d_collate_fn_map)
+
+
+collate_fn_map[Padded3dObject] = pad3d_collate_object_fn
 
 
 def collate(batch):
