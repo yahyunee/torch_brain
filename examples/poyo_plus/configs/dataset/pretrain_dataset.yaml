@@ -1,0 +1,15 @@
+# LMDB Dataset Configuration for DIVER pretraining data
+# NOTE: lmdb_mode and data_root are set in the main train config (e.g., train_diver_cp_train_capoyo.yaml)
+# This file only provides the lmdb_config for multitask_readout settings
+#
+# Duration is auto-detected from LMDB data shape (e.g., 30s for 15000 samples @ 500Hz)
+
+# Multitask readout configuration for EEG reconstruction
+lmdb_config:
+  multitask_readout:
+    - readout_id: eeg_reconstruction
+      timestamp_key: calcium_traces.timestamps
+      value_key: calcium_traces.df_over_f
+      metrics:
+        - metric:
+            _target_: torchmetrics.MeanSquaredError

@@ -1,0 +1,24 @@
+defaults:
+  - defaults.yaml
+  - model: capoyo.yaml
+  - dataset: pretrain_dataset.yaml  # Only provides lmdb_config for multitask_readout
+  - _self_
+
+# ========== LMDB MODE SETTINGS ==========
+# This is the ONLY place where lmdb_mode is set!
+lmdb_mode: true
+data_root: "/pscratch/sd/a/ahhyun/EcoGFound/DATA/scaling_data_V2_Sep_2025/striped_EEG_lmdb/TUEG_1.0/1.0_TUEG/all_resample-500_highpass-0.3_lowpass-None.lmdb"
+
+epochs: 2000
+batch_size: 64
+
+train_transforms:
+  - _target_: torch_brain.transforms.UnitDropout
+    field: "calcium_traces.df_over_f"
+    min_units: 10
+    mode_units: 50
+    max_units: 300
+    tail_right: 100
+
+wandb:
+  run_name: diver_lmdb_capoyo

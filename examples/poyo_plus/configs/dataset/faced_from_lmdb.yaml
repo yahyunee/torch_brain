@@ -1,0 +1,18 @@
+# FACED dataset converted from LMDB to HDF5
+# Labels 0-8 mapped to orientation_id (9-class emotion classification)
+- selection:
+  - brainset: faced_from_lmdb
+    sessions:
+    - "faced_session_001"
+  config:
+    sampling_intervals_modifier: |
+      sampling_intervals = sampling_intervals & data.drifting_gratings.coalesce(0.3)
+    multitask_readout:
+      - readout_id: faced_emotion  # Use new 9-class modality
+        timestamp_key: drifting_gratings.timestamps
+        value_key: drifting_gratings.orientation_id
+        metrics:
+          - metric:
+              _target_: torchmetrics.Accuracy
+              task: multiclass
+              num_classes: 9  # 9 emotion classes (0-8)

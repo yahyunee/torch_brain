@@ -123,8 +123,8 @@ class UnitDropout:
 
     def __init__(self, field: str = "spikes", reset_index=True, *args, **kwargs):
         # TODO allow multiple fields (example: spikes + LFP)
-        self.field = field
-        self.reset_index = reset_index
+        self.field = field #'calcium_traces.df_over_f'
+        self.reset_index = reset_index #True
         # TODO this currently assumes the type of distribution we use, in the future,
         # the distribution might be passed as an argument.
         self.distribution = TriangleDistribution(*args, **kwargs)

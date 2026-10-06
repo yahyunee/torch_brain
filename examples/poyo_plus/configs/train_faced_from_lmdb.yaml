@@ -1,0 +1,23 @@
+# Training config for FACED dataset (converted from LMDB)
+defaults:
+  - defaults.yaml
+  - model: capoyo_single_session.yaml
+  - dataset: faced_from_lmdb.yaml
+  - _self_
+
+# Point to the converted HDF5 location
+data_root: /pscratch/sd/a/ahhyun/EcoGFound/POYO/torch_brain/examples/poyo/data/processed
+
+epochs: 10
+batch_size: 64
+
+train_transforms:
+  - _target_: torch_brain.transforms.UnitDropout
+    field: "calcium_traces.df_over_f"
+    min_units: 10
+    mode_units: 20
+    max_units: 32  # FACED has 32 EEG channels
+    tail_right: 10
+
+wandb:
+  run_name: faced_from_lmdb_test

@@ -4,8 +4,8 @@ defaults:
   - dataset: capoyo_single_session.yaml
   - _self_  # ensures current config overrides defaults
 
-epochs: 100
-batch_size: 64
+epochs: 1
+batch_size: 3
 
 train_transforms:
   - _target_: torch_brain.transforms.UnitDropout

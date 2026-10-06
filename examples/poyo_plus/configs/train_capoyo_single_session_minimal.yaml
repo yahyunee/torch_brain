@@ -1,0 +1,22 @@
+# Test config for minimal HDF5 - Round 1
+# Tests if pipeline works WITHOUT: device, subject, natural_movie_*, running, spontaneous_domain
+
+defaults:
+  - defaults.yaml
+  - model: capoyo_single_session.yaml
+  - dataset: capoyo_single_session_minimal.yaml  # Uses minimal dataset
+  - _self_
+
+epochs: 2  # Just 2 epochs for testing
+batch_size: 64
+
+train_transforms:
+  - _target_: torch_brain.transforms.UnitDropout
+    field: "calcium_traces.df_over_f"
+    min_units: 10
+    mode_units: 50
+    max_units: 300
+    tail_right: 100
+
+wandb:
+  run_name: capoyo_single_session_minimal_test

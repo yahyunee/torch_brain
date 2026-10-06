@@ -8,7 +8,7 @@ import torch.nn as nn
 from torchtyping import TensorType
 from temporaldata import Data
 
-from torch_brain.data import chain, pad8, track_mask8
+from torch_brain.data import chain, pad8, track_mask8, pad2d, track_mask2d
 from torch_brain.nn import (
     Embedding,
     FeedForward,
@@ -62,7 +62,7 @@ class CaPOYO(nn.Module):
         self.latent_step = latent_step
         self.num_latents_per_step = num_latents_per_step
         self.sequence_length = sequence_length
-        self.readout_specs = readout_specs
+        self.readout_specs = readout_specs #! task
 
         # input value map
         self.input_value_map = nn.Linear(1, dim // 2)
@@ -74,7 +74,7 @@ class CaPOYO(nn.Module):
         self.unit_emb = InfiniteVocabEmbedding(dim // 2, init_scale=emb_init_scale)
         self.session_emb = InfiniteVocabEmbedding(dim, init_scale=emb_init_scale)
         self.token_type_emb = Embedding(4, dim, init_scale=emb_init_scale)
-        self.task_emb = Embedding(len(readout_specs), dim, init_scale=emb_init_scale)
+        self.task_emb = Embedding(len(readout_specs) + 1, dim, init_scale=emb_init_scale) #! +1 since modality ID in registry.py is 1-indexed.
         self.latent_emb = Embedding(
             num_latents_per_step, dim, init_scale=emb_init_scale
         )
@@ -86,7 +86,7 @@ class CaPOYO(nn.Module):
         )
 
         self.dropout = nn.Dropout(p=lin_dropout)
-
+        # import pdb; pdb.set_trace()
         # encoder layer
         self.enc_atn = RotaryCrossAttention(
             dim=dim,
@@ -193,31 +193,45 @@ class CaPOYO(nn.Module):
                 "Session vocabulary has not been initialized, please use "
                 "`model.session_emb.initialize_vocab(session_ids)`"
             )
-
+        #import pdb; pdb.set_trace()
         # input
-        inputs = cat(
+        inputs = cat( #! input_value_map : input_value -> embedding space (this can be diver)
             (self.input_value_map(input_values), self.unit_emb(input_unit_index)),
             dim=-1,
-        )
-        input_timestamp_emb = self.rotary_emb(input_timestamps)
+        ) # input_values: torch.Size([64, 528, 1]) => torch.Size([64, 528, 32])
+        # input_unit_index: torch.Size([64, 528]) => torch.Size([64, 528, 32])
+        # inputs : torch.Size([64, 528, 64])
+        # Batchsize X Number of Channels(528, can be different for each batch)
+        #! first go line by line for the dataloader to understand how the input -> batch.
+        #! Q) how they figure out unique number of channels? (for every batch) => I have to figure out.
+        #! same subject -> same unit 으로 볼 건지, same channel 이면 ) 이 definition 은 다를 수 있음.
+        #! Q) How do they sample input_unit_index? (This would be done in the dataloader)
+        #! dont touch data loader figure out how to give input to the dataloader.
+        #! figure out how they use subject data, channel data. (channel info)
+        #! one way to do ) creat (x, data_info_list, hdf5.. needed .. stuff)
+        
+        input_timestamp_emb = self.rotary_emb(input_timestamps) # torch.Size([64, 528]) => torch.Size([64, 528, 128]), input_timestamps [0,1]
 
         # latents
-        latents = self.latent_emb(latent_index)
-        latent_timestamp_emb = self.rotary_emb(latent_timestamps)
-
+        latents = self.latent_emb(latent_index) # torch.Size([64, 128]) => torch.Size([64, 128, 64])
+        latent_timestamp_emb = self.rotary_emb(latent_timestamps) # torch.Size([64, 128]) => torch.Size([64, 128, 128]) / flattened (16 * 8) 왜 8 : 1 seq len / 0.125
+        #! latent_index : t(8) x n_latents(e) 그림에서 가로 세로. 
+        
         # outputs
         output_queries = self.session_emb(output_session_index) + self.task_emb(
             output_decoder_index
-        )
-        output_timestamp_emb = self.rotary_emb(output_timestamps)
+        ) # output_session_index: torch.Size([64, 8]) -> torch.Size([64, 8, 64]) , 
+        # output_decoder_index: torch.Size([64, 8])
+        # output_queries : torch.Size([64, 8, 64])
+        output_timestamp_emb = self.rotary_emb(output_timestamps) # torch.Size([64, 8]) => torch.Size([64, 8, 128])
 
         # encode
         latents = latents + self.enc_atn(
-            latents,
-            inputs,
+            latents, #torch.Size([64, 128, 64])
+            inputs, #torch.Size([64, 528, 64])
             latent_timestamp_emb,
             input_timestamp_emb,
-            input_mask,
+            input_mask, #! do attention within same subject only. (previously concatenated the channels)
         )
         latents = latents + self.enc_ffn(latents)
 
@@ -252,21 +266,25 @@ class CaPOYO(nn.Module):
 
         This code runs on CPU. Do not access GPU tensors inside this function.
         """
-
         # context window
         start, end = 0, self.sequence_length
+        print("timestep", data.calcium_traces.timestamps[1] - data.calcium_traces.timestamps[0])
 
         ### prepare input
         calcium_traces = data.calcium_traces
         unit_ids = data.units.id
-
+        
         T, N = calcium_traces.df_over_f.shape
         input_timestamps = repeat(calcium_traces.timestamps, "T -> (T N)", T=T, N=N)
-
+        # print("T, N", T, N)
+        # print("input_timestamps", input_timestamps.shape)
+        
         ### prepare calcium values
         T, N = calcium_traces.df_over_f.shape
         input_values = rearrange(calcium_traces.df_over_f, "T N -> (T N) 1", T=T, N=N)
-
+        print("T, N", T, N)
+        print("input_values", input_values.shape)
+        
         # input unit indices
         local_to_global_map = np.array(self.unit_emb.tokenizer(unit_ids))
         input_unit_index = [local_to_global_map[i] for i in range(len(unit_ids))]
@@ -296,11 +314,21 @@ class CaPOYO(nn.Module):
         )
 
         session_index = np.repeat(session_index, len(output_timestamps))
+        
+        # Random 2D shape for testing pad2d (each sample will have different N, M)
+        random_n = np.random.randint(5, 20)  # random rows
+        random_m = np.random.randint(5, 15)  # random cols
+        
+        print(f"x_pad2d shape: ({random_n}, {random_m})") 
 
         data_dict = {
             "model_inputs": {
                 # input sequence
                 "input_unit_index": pad8(input_unit_index),
+                # Test pad2d with random shape - each sample has (random_n, random_m)
+                "x_pad2d": pad2d(np.random.randn(random_n, random_m)),
+                "x_pad2d_mask": track_mask2d(np.random.randn(random_n, random_m)),
+                
                 "input_timestamps": pad8(input_timestamps),
                 "input_values": pad8(input_values),
                 "input_mask": track_mask8(input_unit_index),

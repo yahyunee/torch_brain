@@ -29,6 +29,7 @@ brainsets prepare allen_visual_coding_ophys_2016
 
 ```bash
 python train.py --config-name=train_capoyo.yaml
+python train.py --config-name=train_capoyo_single_session.yaml
 ```
 
 Check out `configs/train_capoyo.yaml` for full-model config and `configs/train_capoyo_single_session.yaml` for a single-session example.

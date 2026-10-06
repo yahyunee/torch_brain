@@ -1,0 +1,17 @@
+Available brainsets:
+
+
+- pei_pandarinath_nlb_2021 ❌
+- kemp_sleep_edf_2013 ✅
+- allen_visual_coding_ophys_2016 ✅
+
+- perich_miller_population_2018
+- churchland_shenoy_neural_2012
+- odoherty_sabes_nonhuman_2017
+- flint_slutzky_accurate_2012
+
+
+brainsets prepare perich_miller_population_2018
+brainsets prepare churchland_shenoy_neural_2012
+brainsets prepare flint_slutzky_accurate_2012
+brainsets prepare odoherty_sabes_nonhuman_2017

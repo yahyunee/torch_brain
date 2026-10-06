@@ -96,11 +96,11 @@ class POYOPlus(nn.Module):
         self.readout_specs = readout_specs
 
         # embeddings
-        self.unit_emb = InfiniteVocabEmbedding(dim, init_scale=emb_init_scale)
-        self.session_emb = InfiniteVocabEmbedding(dim, init_scale=emb_init_scale)
-        self.token_type_emb = Embedding(4, dim, init_scale=emb_init_scale)
-        self.task_emb = Embedding(len(readout_specs), dim, init_scale=emb_init_scale)
-        self.latent_emb = Embedding(
+        self.unit_emb = InfiniteVocabEmbedding(dim, init_scale=emb_init_scale) #! different # of neurons per dataset / includes tokenizer
+        self.session_emb = InfiniteVocabEmbedding(dim, init_scale=emb_init_scale) #! different # of sessions per dataset / includes tokenizer
+        self.token_type_emb = Embedding(4, dim, init_scale=emb_init_scale) #! 3 token types used: DEFAULT(0)=spike, START_OF_SEQUENCE(1), END_OF_SEQUENCE(2) # Index 3 is reserved/unused
+        self.task_emb = Embedding(len(readout_specs), dim, init_scale=emb_init_scale) #! # of task set in config file.
+        self.latent_emb = Embedding( #! number of latent tokens is hyperparameter
             num_latents_per_step, dim, init_scale=emb_init_scale
         )
         self.rotary_emb = RotaryTimeEmbedding(
@@ -125,7 +125,7 @@ class POYOPlus(nn.Module):
         )
 
         # process layers
-        self.proc_layers = nn.ModuleList([])
+        self.proc_layers = nn.ModuleList([]) #! Self-attention layers
         for i in range(depth):
             self.proc_layers.append(
                 nn.Sequential(
@@ -206,7 +206,7 @@ class POYOPlus(nn.Module):
             - Total loss value
             - Dictionary of per-task losses
         """
-
+        import pdb; pdb.set_trace()
         if self.unit_emb.is_lazy():
             raise ValueError(
                 "Unit vocabulary has not been initialized, please use "
@@ -218,10 +218,10 @@ class POYOPlus(nn.Module):
                 "Session vocabulary has not been initialized, please use "
                 "`model.session_emb.initialize_vocab(session_ids)`"
             )
-
+        import pdb; pdb.set_trace()
         # input
-        inputs = self.unit_emb(input_unit_index) + self.token_type_emb(input_token_type)
-        input_timestamp_emb = self.rotary_emb(input_timestamps)
+        inputs = self.unit_emb(input_unit_index) + self.token_type_emb(input_token_type) #! add not concat?
+        input_timestamp_emb = self.rotary_emb(input_timestamps) #! precomputed RoPE
 
         # latents
         latents = self.latent_emb(latent_index)
@@ -274,7 +274,7 @@ class POYOPlus(nn.Module):
 
         This code runs on CPU. Do not access GPU tensors inside this function.
         """
-
+        import pdb; pdb.set_trace()
         # context window
         start, end = 0, self.sequence_length
 
@@ -325,7 +325,8 @@ class POYOPlus(nn.Module):
         )
 
         session_index = np.repeat(session_index, len(output_timestamps))
-
+        import pdb; pdb.set_trace()
+        print()
         data_dict = {
             "model_inputs": {
                 # input sequence

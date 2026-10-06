@@ -1,0 +1,199 @@
+# allen_visual_coding_ophys_2016 - three_session_A - DG, NM1, NM3
+- selection:
+  - brainset: allen_visual_coding_ophys_2016
+    sessions:
+    - "501574836"
+    - "501729039"
+    - "501876401"
+    - "501929610"
+    - "501933264"
+    - "501940850"
+    - "502115959"
+    - "502199136"
+    - "502205092"
+    - "502376461"
+    - "502608215"
+    - "502666254"
+    - "502793808"
+    - "502962794"
+    - "503109347"
+    - "503324629"
+    - "503412730"
+    - "504115289"
+    - "504568756"
+    - "504853580"
+    - "505407318"
+    - "505845219"
+    - "506540916"
+    - "506773185"
+    - "506773892"
+    - "506809539"
+    - "506823562"
+    - "507129766"
+    - "507464107"
+    - "507691036"
+    - "507990552"
+    - "508356957"
+    - "508563988"
+    - "508753256"
+    - "509580400"
+    - "509904120"
+    - "509958730"
+    - "510093797"
+    - "510214538"
+    - "510390912"
+    - "510517131"
+    - "510859641"
+    - "510917254"
+    - "511194579"
+    - "511440894"
+    - "511534603"
+    - "511573879"
+    - "511595995"
+    - "512164988"
+    - "512270518"
+    - "512311673"
+    - "524691284"
+    - "526504941"
+    - "527048992"
+    - "528402271"
+    - "529688779"
+    - "530645663"
+    - "531134090"
+    - "539290504"
+    - "540684467"
+    - "541010698"
+    - "541290571"
+    - "545446482"
+    - "546641574"
+    - "546716391"
+    - "548379748"
+    - "550455111"
+    - "550490398"
+    - "550851591"
+    - "551834174"
+    - "551888519"
+    - "552410386"
+    - "552427971"
+    - "552760671"
+    - "553568031"
+    - "554037270"
+    - "555040116"
+    - "555749369"
+    - "556321897"
+    - "556344224"
+    - "556353209"
+    - "556665481"
+    - "557225279"
+    - "557227804"
+    - "557304694"
+    - "557615965"
+    - "557848210"
+    - "558476282"
+    - "558670888"
+    - "559192380"
+    - "559382012"
+    - "560027980"
+    - "560578599"
+    - "560809202"
+    - "560866155"
+    - "560898462"
+    - "560920977"
+    - "561312435"
+    - "561472633"
+    - "562052595"
+    - "562536153"
+    - "562711440"
+    - "563176332"
+    - "563710064"
+    - "564425777"
+    - "564607188"
+    - "565216523"
+    - "565698388"
+    - "566096665"
+    - "566307038"
+    - "566458505"
+    - "567878987"
+    - "569299884"
+    - "569396924"
+    - "569457162"
+    - "569645690"
+    - "569718097"
+    - "569739027"
+    - "569792817"
+    - "569896493"
+    - "570008444"
+    - "570236381"
+    - "570278597"
+    - "570305847"
+    - "571006300"
+    - "571103671"
+    - "571137446"
+    - "571177441"
+    - "571541565"
+    - "571642389"
+    - "571684733"
+    - "572606382"
+    - "572722662"
+    - "573083539"
+    - "573261515"
+    - "573720508"
+  config:
+    sampling_intervals_modifier: |
+      sampling_intervals = sampling_intervals & data.drifting_gratings.coalesce(0.3)
+    multitask_readout:
+      - readout_id: drifting_gratings_orientation
+        timestamp_key: drifting_gratings.timestamps
+        value_key: drifting_gratings.orientation_id
+        metrics:
+          - metric:
+              _target_: torchmetrics.Accuracy
+              task: multiclass
+              num_classes: 8
+      - readout_id: drifting_gratings_temporal_frequency
+        timestamp_key: drifting_gratings.timestamps
+        value_key: drifting_gratings.temporal_frequency_id
+        metrics:
+          - metric:
+              _target_: torchmetrics.Accuracy
+              task: multiclass
+              num_classes: 5
+      - readout_id: natural_movie_one_frame
+        timestamp_key: natural_movie_one.timestamps
+        value_key: natural_movie_one.frame
+        metrics:
+          - metric:
+              _target_: torchmetrics.Accuracy
+              task: multiclass
+              num_classes: 900
+      - readout_id: natural_movie_three_frame
+        timestamp_key: natural_movie_three.timestamps
+        value_key: natural_movie_three.frame
+        metrics:
+          - metric:
+              _target_: torchmetrics.Accuracy
+              task: multiclass
+              num_classes: 3600
+      - readout_id: running_speed
+        normalize_mean: 7.078324317932129
+        normalize_std: 14.115145683288574
+        timestamp_key: running.timestamps
+        value_key: running.running_speed
+        metrics:
+          - metric:
+              _target_: torchmetrics.MeanSquaredError
+
+# kemp_sleep_edf_2013
+- selection:
+  - brainset: kemp_sleep_edf_2013
+  config:
+    readout:
+      readout_id: sleep_stage
+      timestamp_key: sleep_stages.timestamps
+      value_key: sleep_stages.stage
+      metrics:
+        - metric:
+            _target_: torchmetrics.Accuracy
+            task: multiclass
+            num_classes: 5  # W, N1, N2, N3, R
+      eval_interval: sleep_stages.domain

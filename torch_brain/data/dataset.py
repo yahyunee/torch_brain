@@ -101,6 +101,31 @@ class Dataset(torch.utils.data.Dataset):
         self.session_id_prefix_fn = session_id_prefix_fn
         self.subject_id_prefix_fn = subject_id_prefix_fn
         self.keep_files_open = keep_files_open
+    
+# (Pdb) print(self)
+# Dataset(root=../poyo/data/processed/, 
+#         config=[{'selection': [{'brainset': 'allen_visual_coding_ophys_2016', 'sessions': ['710504563']}], 
+#                  'config': {'sampling_intervals_modifier': 'sampling_intervals = sampling_intervals & data.drifting_gratings.coalesce(0.3)\n', 
+#                             'multitask_readout': [{'readout_id': 'drifting_gratings_orientation', 
+#                                                    'timestamp_key': 'drifting_gratings.timestamps', 
+#                                                    'value_key': 'drifting_gratings.orientation_id', 
+#                                                    'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 8}}]}, 
+#                                                   {'readout_id': 'drifting_gratings_temporal_frequency', 
+#                                                    'timestamp_key': 'drifting_gratings.timestamps', 
+#                                                    'value_key': 'drifting_gratings.temporal_frequency_id', 
+#                                                    'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 5}}]}]}}], 
+#         split=train)
+
+# Dataset(root=../poyo/data/processed/, 
+#         config=[{'selection': [{'brainset': 'allen_visual_coding_ophys_2016', 'sessions': ['710504563']}], 
+#                  'config': {'sampling_intervals_modifier': 'sampling_intervals = sampling_intervals & data.drifting_gratings.coalesce(0.3)\n', 
+#                             'multitask_readout': [{'readout_id': 'drifting_gratings_orientation', 'timestamp_key': 'drifting_gratings.timestamps', 
+#                                                    'value_key': 'drifting_gratings.orientation_id', 
+#                                                    'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 8}}]}, 
+#                                                   {'readout_id': 'drifting_gratings_temporal_frequency', 'timestamp_key': 'drifting_gratings.timestamps', 
+#                                                    'value_key': 'drifting_gratings.temporal_frequency_id', 
+#                                                    'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 5}}]}]}}], 
+#         split=valid)
 
         if config is not None:
             assert (
@@ -114,7 +139,19 @@ class Dataset(torch.utils.data.Dataset):
             else:
                 raise ValueError(f"Could not open configuration file: '{config}'")
 
-            self.recording_dict = self._look_for_files(config)
+            self.recording_dict = self._look_for_files(config) #!identical to Dataset.config.config
+# """ 
+# (Pdb) self.recording_dict
+# {'allen_visual_coding_ophys_2016/710504563': {'filename': PosixPath('../poyo/data/processed/allen_visual_coding_ophys_2016/710504563.h5'), 
+#                                               'config': {'sampling_intervals_modifier': 'sampling_intervals = sampling_intervals & data.drifting_gratings.coalesce(0.3)\n', 
+#                                                          'multitask_readout': [{'readout_id': 'drifting_gratings_orientation', 'timestamp_key': 'drifting_gratings.timestamps', 'value_key': 'drifting_gratings.orientation_id', 'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 8}}]}, 
+#                                                                                {'readout_id': 'drifting_gratings_temporal_frequency', 'timestamp_key': 'drifting_gratings.timestamps', 'value_key': 'drifting_gratings.temporal_frequency_id', 'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 5}}]}]}}}
+# """
+
+# (Pdb) self.recording_dict
+# {'allen_visual_coding_ophys_2016/710504563': {'filename': PosixPath('../poyo/data/processed/allen_visual_coding_ophys_2016/710504563.h5'), 
+#                                               'config': {'sampling_intervals_modifier': 'sampling_intervals = sampling_intervals & data.drifting_gratings.coalesce(0.3)\n', 
+#                                                          'multitask_readout': [{'readout_id': 'drifting_gratings_orientation', 'timestamp_key': 'drifting_gratings.timestamps', 'value_key': 'drifting_gratings.orientation_id', 'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 8}}]}, {'readout_id': 'drifting_gratings_temporal_frequency', 'timestamp_key': 'drifting_gratings.timestamps', 'value_key': 'drifting_gratings.temporal_frequency_id', 'metrics': [{'metric': {'_target_': 'torchmetrics.Accuracy', 'task': 'multiclass', 'num_classes': 5}}]}]}}}
 
         elif recording_id is not None:
             self.recording_dict = {
@@ -125,7 +162,7 @@ class Dataset(torch.utils.data.Dataset):
             }
         else:
             raise ValueError("Please either specify a config file or a recording_id.")
-
+        
         if self.keep_files_open:
             # open files lazily
             self._open_files = {
@@ -134,8 +171,8 @@ class Dataset(torch.utils.data.Dataset):
             }
 
             self._data_objects = {
-                recording_id: Data.from_hdf5(f, lazy=True)
-                for recording_id, f in self._open_files.items()
+                recording_id: Data.from_hdf5(f, lazy=True) #'allen_visual_coding_ophys_2016/710504563', 
+                for recording_id, f in self._open_files.items() #f: <HDF5 file "710504563.h5" (mode r)>
             }
 
     def _close_open_files(self):
@@ -384,6 +421,7 @@ class Dataset(torch.utils.data.Dataset):
                     raise type(e)(error_message) from e
 
                 sampling_intervals = local_vars.get("sampling_intervals")
+            import pdb; pdb.set_trace()  
             sampling_intervals_dict[recording_id] = sampling_intervals
         return sampling_intervals_dict
 
@@ -483,5 +521,5 @@ class Dataset(torch.utils.data.Dataset):
     def __iter__(self):
         raise NotImplementedError("Iteration over dataset is not defined")
 
-    def __repr__(self):
+    def __repr__(self): #! __repr__ : string representation of the object. used for printing/debugging.
         return f"Dataset(root={self.root}, config={self.config}, split={self.split})"

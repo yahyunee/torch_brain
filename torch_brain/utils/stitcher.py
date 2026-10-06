@@ -375,9 +375,19 @@ class MultiTaskDecodingStitchEvaluator(L.Callback):
                 stitched_target = torch.round(stitched_target).long()
 
             for metric_name in self.metrics[session_id][task_name].keys():
-                self.metrics[session_id][task_name][metric_name].update(
-                    stitched_pred, stitched_target
-                )
+                metric = self.metrics[session_id][task_name][metric_name]
+                
+                # For multiclass classification: if predictions are 2D (logits) and 
+                # targets are 1D (class indices), convert logits to class indices
+                pred_to_update = stitched_pred
+                target_to_update = stitched_target
+                
+                if (stitched_pred.ndim == 2 and stitched_target.ndim == 1 and 
+                    stitched_target.dtype == torch.long):
+                    # Convert logits to class indices for classification metrics
+                    pred_to_update = stitched_pred.argmax(dim=-1)
+                
+                metric.update(pred_to_update, target_to_update)
 
         # delete the cache to free memory
         self.cache[i] = None

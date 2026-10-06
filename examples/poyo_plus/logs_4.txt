@@ -1,0 +1,4276 @@
+[2026-03-08 19:52:34,792][__main__][INFO] - POYO+!
+[2026-03-08 19:52:34,793][torch_brain.utils.seed_everything][INFO] - Global seed set to 42.
+[2026-03-08 19:52:34,920][root][WARNING] - Data leakage check is disabled. Please be absolutely sure that there is no leakage between train and other splits.
+[2026-03-08 19:52:34,943][root][WARNING] - Data leakage check is disabled. Please be absolutely sure that there is no leakage between valid and other splits.
+[2026-03-08 19:52:34,963][root][WARNING] - Data leakage check is disabled. Please be absolutely sure that there is no leakage between test and other splits.
+[2026-03-08 19:52:35,068][__main__][INFO] - Local rank/node rank/world size/num nodes: 0/0/1/1
+[2026-03-08 19:52:36,128][__main__][INFO] - Training on 328 samples
+[2026-03-08 19:52:36,129][__main__][INFO] - Training on 17 units
+[2026-03-08 19:52:36,129][__main__][INFO] - Training on 1 sessions
+[2026-03-08 19:52:36,230][__main__][INFO] - Expecting 165 validation steps
+[2026-03-08 19:52:36,242][root][INFO] - Memory info: 
+MemTotal:       527407852 kB
+MemFree:        160078564 kB
+MemAvailable:   339780728 kB
+Buffers:           95580 kB
+Cached:         136878516 kB
+SwapCached:         9488 kB
+Active:         39759916 kB
+Inactive:       163173268 kB
+Active(anon):     802992 kB
+Inactive(anon): 81976540 kB
+Active(file):   38956924 kB
+Inactive(file): 81196728 kB
+Unevictable:    23709548 kB
+Mlocked:        17000228 kB
+SwapTotal:       9765620 kB
+SwapFree:        9676020 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:              3368 kB
+Writeback:             0 kB
+AnonPages:      89621544 kB
+Mapped:         20854680 kB
+Shmem:          10020448 kB
+KReclaimable:   63365180 kB
+Slab:           119994340 kB
+SReclaimable:   63365180 kB
+SUnreclaim:     56629160 kB
+KernelStack:      158992 kB
+PageTables:       604748 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    273469544 kB
+Committed_AS:   218190168 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:     3225204 kB
+VmallocChunk:          0 kB
+Percpu:          4690944 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:  17037312 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+Unaccepted:            0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:    62460852 kB
+DirectMap2M:    126009344 kB
+DirectMap1G:    348127232 kB
+
+sampling intervals:  {'allen_visual_coding_ophys_2016/710504563': Interval(
+  start=[328],
+  end=[328]
+)}
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 0
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 527
+sample 1 all zeros from padding start: True, num zeros: 1, tail length: 1
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 1
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 2
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 3
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 4
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 5
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 6
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 7
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 8
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 9
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 10
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 11
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 12
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 13
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 14
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 15
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 16
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 17
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 13
+input_values (390, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 18
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 390
+sample 1 all zeros from padding start: True, num zeros: 138, tail length: 138
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 19
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 20
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 21
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 527
+sample 1 all zeros from padding start: True, num zeros: 1, tail length: 1
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 22
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 23
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 13
+input_values (390, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 24
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 390
+sample 1 all zeros from padding start: True, num zeros: 122, tail length: 122
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 25
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 26
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 27
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 28
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 29
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 30
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 31
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 32
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 33
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 34
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 13
+input_values (403, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 35
+0 403
+sample 0 all zeros from padding start: True, num zeros: 109, tail length: 109
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 36
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 37
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 12
+input_values (360, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 38
+0 360
+sample 0 all zeros from padding start: True, num zeros: 152, tail length: 152
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 39
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 40
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 41
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 42
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 43
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 44
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 45
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 46
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 47
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 48
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 49
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 527
+sample 1 all zeros from padding start: True, num zeros: 1, tail length: 1
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 50
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 51
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 52
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 53
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 54
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 55
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 56
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 57
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 58
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 59
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 60
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 61
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 62
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 63
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 64
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 65
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 66
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 67
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 68
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 69
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 70
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 71
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 527
+sample 1 all zeros from padding start: True, num zeros: 1, tail length: 1
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 72
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 73
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 74
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 12
+input_values (360, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 75
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 360
+sample 1 all zeros from padding start: True, num zeros: 152, tail length: 152
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 76
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 77
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 78
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 79
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 80
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 81
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 82
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 83
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 84
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 85
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 86
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 87
+0 527
+sample 0 all zeros from padding start: True, num zeros: 1, tail length: 1
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 510
+sample 2 all zeros from padding start: True, num zeros: 18, tail length: 18
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 88
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 89
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 90
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 91
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 92
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 93
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 94
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 95
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 96
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 97
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 98
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 99
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 527
+sample 1 all zeros from padding start: True, num zeros: 1, tail length: 1
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+batch_idx 100
+0 510
+sample 0 all zeros from padding start: True, num zeros: 18, tail length: 18
+1 510
+sample 1 all zeros from padding start: True, num zeros: 18, tail length: 18
+2 527
+sample 2 all zeros from padding start: True, num zeros: 1, tail length: 1
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 101
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 102
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 103
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 104
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 105
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 106
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 107
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+batch_idx 108
+0 510
+sample 0 all zeros from padding start: True, num zeros: 2, tail length: 2
+1 510
+sample 1 all zeros from padding start: True, num zeros: 2, tail length: 2
+2 510
+sample 2 all zeros from padding start: True, num zeros: 2, tail length: 2
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+[2026-03-08 19:52:52,021][root][INFO] - Logged 3 val metrics.
+                                              metric     value
+0  allen_visual_coding_ophys_2016/710504563/drift...  0.072727
+1  allen_visual_coding_ophys_2016/710504563/drift...  0.218182
+2                                 average_val_metric  0.145455
+Epoch 0/0  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 109/109 0:00:13 • 0:00:00 8.16it/s v_num: 40.000 train_loss: 3.809
+[2026-03-08 19:52:54,628][__main__][INFO] - Testing on 648 samples
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 31 17
+input_values (527, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+timestep 0.033245551408828775
+T, N 30 17
+input_values (510, 1)
+[2026-03-08 19:53:00,783][root][INFO] - Logged 3 test metrics.
+                                              metric     value
+0  allen_visual_coding_ophys_2016/710504563/drift...  0.106481
+1  allen_visual_coding_ophys_2016/710504563/drift...  0.180556
+2                                average_test_metric  0.143519
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                         Test metric                          ┃                         DataLoader 0                         ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ allen_visual_coding_ophys_2016/710504563/drifting_gratings_… │                     0.10648148506879807                      │
+│ allen_visual_coding_ophys_2016/710504563/drifting_gratings_… │                      0.1805555522441864                      │
+│                     average_test_metric                      │                     0.14351852238178253                      │
+└──────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────┘
+Testing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 216/216 0:00:06 • 0:00:00 35.19it/s  

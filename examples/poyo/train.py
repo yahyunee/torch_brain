@@ -153,7 +153,7 @@ class DataModule(L.LightningDataModule):
         and unit_emb)
         """
         self.sequence_length = model.sequence_length
-
+        import pdb; pdb.set_trace()
         train_transforms = hydra.utils.instantiate(self.cfg.train_transforms)
         self.train_dataset = Dataset(
             root=self.cfg.data_root,

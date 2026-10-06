@@ -264,3 +264,13 @@ register_modality(
     value_key="pupil.size_2d",
     loss_fn=torch_brain.nn.loss.MSELoss(),
 )
+
+# FACED emotion classification (9 classes: 0-8) #! added registry in between since getting out of bounds error if added to the end.
+register_modality(
+    "faced_emotion",
+    dim=9,  # 9 emotion classes
+    type=DataType.MULTINOMIAL,
+    timestamp_key="drifting_gratings.timestamps",
+    value_key="drifting_gratings.orientation_id",
+    loss_fn=torch_brain.nn.loss.CrossEntropyLoss(),
+)
